@@ -1,0 +1,26 @@
+# cargo publish configuration for lazymake
+
+# this file helps with publishing to crates.io
+# run: cargo publish --config .cargo-publish.toml
+
+[registry]
+default = "crates-io"
+
+[package]
+# ensure we're publishing the right package
+name = "lazymake"
+version = "0.1.0"
+edition = "2021"
+description = "interactive tui for make/justfiles - inspired by lazyvim and lazygit"
+license = "MIT"
+repository = "https://github.com/yourusername/lazymake"
+homepage = "https://github.com/yourusername/lazymake"
+documentation = "https://github.com/yourusername/lazymake#readme"
+keywords = ["tui", "make", "just", "build", "terminal"]
+categories = ["command-line-utilities", "development-tools"]
+authors = ["Your Name <your.email@example.com>"]
+readme = "README.md"
+
+[metadata]
+# additional metadata for crates.io
+rust-version = "1.70"

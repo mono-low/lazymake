@@ -35,29 +35,63 @@ beautiful tui
 
 ## installation
 
+### quick install (recommended)
+
+```bash
+cargo install lazymake
+```
+
+that's it! lazymake is now available globally:
+
+```bash
+lazymake
+```
+
 ### from source
 
 ```bash
 git clone https://github.com/yourusername/lazymake
 cd lazymake
 cargo build --release
-./target/release/lazymake
+cp target/release/lazymake ~/.local/bin/
 ```
 
 ### prerequisites
 
-- rust 1.70+ (for building from source)
+- rust 1.70+ (only for building from source)
 - a terminal with 256-color support
 - make or just installed (for running tasks)
 
-## usage
+### verify installation
 
-simply run `lazymake` in a directory containing a `makefile` or `justfile`:
+```bash
+lazymake --help
+```
+
+or run it in any directory with a makefile or justfile:
 
 ```bash
 cd your-project
 lazymake
 ```
+
+## usage
+
+simply run `lazymake` in any directory containing a `makefile` or `justfile`:
+
+```bash
+cd your-project
+lazymake
+```
+
+### what lazymake looks for
+
+lazymake automatically detects and uses:
+- `justfile` (preferred)
+- `makefile` 
+- `Makefile`
+
+if no file is found, it will show a helpful error message.
 
 ### keybindings
 
@@ -221,6 +255,35 @@ src/
   - add doc comments to public functions and types
   - improve error messages where they are still generic
   - add structured logging hooks for debugging
+
+## troubleshooting
+
+### command not found
+
+if you get `command not found: lazymake` after installing:
+
+1. check your path:
+   ```bash
+   echo $PATH | grep -o "[^:]*bin[^:]*"
+   ```
+
+2. if using cargo install, ensure cargo's bin directory is in your path:
+   ```bash
+   export PATH="$HOME/.cargo/bin:$PATH"
+   ```
+   add this to your `~/.zshrc` or `~/.bashrc`.
+
+### no tasks found
+
+make sure you're in a directory with:
+- a `justfile`, or
+- a `makefile`/`Makefile`
+
+and that the file contains at least one task/recipe.
+
+### terminal colors
+
+if colors look wrong, ensure your terminal supports 256 colors. most modern terminals do.
 
 ## contributing
 
